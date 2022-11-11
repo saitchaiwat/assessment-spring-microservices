@@ -1,13 +1,12 @@
 package com.codework.userservice.service;
 
+import com.codework.userservice.dto.UserClientDTO;
 import com.codework.userservice.entity.UserEntity;
 import com.codework.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,8 +19,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserClientDTO getCustomerById(Long id) {
+        return userRepository.findUserByNativeQuery(id, UserEntity.Role.Customer.toString());
+    }
+
+    @Override
+    public UserClientDTO getStaffById(Long id) {
+        return userRepository.findUserByNativeQuery(id, UserEntity.Role.Staff.toString());
+    }
+
+    @Override
+    public UserClientDTO getManagerById(Long id) {
+        return userRepository.findUserByNativeQuery(id, UserEntity.Role.Manager.toString());
+    }
+
+    @Override
     public void createCustomer(UserEntity user) {
-        user.setRole(UserEntity.Role.customer);
+        user.setRole(UserEntity.Role.Customer);
         userRepository.save(user);
     }
 

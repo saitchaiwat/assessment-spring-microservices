@@ -2,6 +2,7 @@ package com.codework.requestservice.controller;
 
 import com.codework.requestservice.dto.FileViewDTO;
 import com.codework.requestservice.entity.FileEntity;
+import com.codework.requestservice.response.ResponseHandler;
 import com.codework.requestservice.service.FileServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,12 +30,13 @@ public class FileController {
 
     @CrossOrigin("*")
     @RequestMapping(value = "/getFileDetail/{requestId}", method = RequestMethod.GET)
-    public ResponseEntity<List<FileViewDTO>> getFileDetail(@PathVariable Long requestId) {
+    public ResponseEntity<Object> getFileDetail(@PathVariable Long requestId) {
         try {
             List<FileViewDTO> files = fileService.getFileDetail(requestId);
-            return ResponseEntity.status(HttpStatus.OK).body(files);
+
+            return ResponseHandler.generateResponse("Successfully retrieved data", HttpStatus.OK, files);
         } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(null);
+            return ResponseHandler.generateResponse(ex.getMessage(), HttpStatus.EXPECTATION_FAILED, null);
         }
     }
 }

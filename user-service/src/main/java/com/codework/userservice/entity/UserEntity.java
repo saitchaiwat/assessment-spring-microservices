@@ -18,7 +18,7 @@ public class UserEntity {
     public enum Role {
         Manager,
         Staff,
-        customer
+        Customer
     }
 
     @Id
