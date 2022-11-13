@@ -127,7 +127,7 @@ public class RequestController {
             @RequestPart(name = "requestImages") MultipartFile[] requestImages
     ) {
         try {
-            UserModel customerUser = userClient.getStaffById(customerId);
+            UserModel customerUser = userClient.getCustomerById(customerId);
             if (customerUser == null) {
                 return ResponseHandler.generateResponse("Customer not found", HttpStatus.NOT_FOUND, null);
             }
@@ -137,7 +137,7 @@ public class RequestController {
                 return ResponseHandler.generateResponse("Staff not found", HttpStatus.NOT_FOUND, null);
             }
 
-            UserModel managerUser = userClient.getStaffById(managerId);
+            UserModel managerUser = userClient.getManagerById(managerId);
             if (managerUser == null) {
                 return ResponseHandler.generateResponse("Manager not found", HttpStatus.NOT_FOUND, null);
             }
@@ -161,7 +161,7 @@ public class RequestController {
             @RequestPart(name = "requestImages") MultipartFile[] requestImages
     ) {
         try {
-            UserModel customerUser = userClient.getStaffById(customerId);
+            UserModel customerUser = userClient.getCustomerById(customerId);
             if (customerUser == null) {
                 return ResponseHandler.generateResponse("Customer not found", HttpStatus.NOT_FOUND, null);
             }
@@ -171,7 +171,7 @@ public class RequestController {
                 return ResponseHandler.generateResponse("Staff not found", HttpStatus.NOT_FOUND, null);
             }
 
-            UserModel managerUser = userClient.getStaffById(managerId);
+            UserModel managerUser = userClient.getManagerById(managerId);
             if (managerUser == null) {
                 return ResponseHandler.generateResponse("Manager not found", HttpStatus.NOT_FOUND, null);
             }
